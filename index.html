@@ -5,63 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Interactive rating component</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     *{
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
+
     body{
+      font-family: 'Overpass', sans-serif;
       background: hsl(216, 12%, 8%);
       display: grid;
       justify-content: center;
     }
-    .rating-form{
-      padding: 32px 1em 30px 2.5em;
-      background: hsl(213, 19%, 18%);
+    .container{
+      position: relative;
+      top: 25%;
+      bottom: 25%;
+      padding: 2em;
+      margin: 0 1.5em;
+      background: linear-gradient(#222933, #171E28);
       color: white;
-      max-width: 500px;
+      max-width: 410px;
+      border-radius: 25px;
+    }
+    .rating-form{
+      display: block;
+    }
+    .rating-head{
+      font-size: 28px;
     }
     .rating-text {
       color: hsl(216, 12%, 54%);
+      font-size: 15px;
     }
     .rating-star{
-        padding: 24px 24px;
-        border: solid;
+        padding: 1em 1em;
         border-radius: 50%;
-        margin-bottom: 1em;
+        background-color: #262f38;
     }
     .rating-margin{
-      margin-bottom: .8em;
+      margin-top: 1em;
     }
     .rating-radio-group{
-      margin: 3em 0;
+      display: flex;
+      justify-content: space-between;
+      margin: 1em 0;
     }
     .rating-label{
         border-radius: 50%;
-        background-color: hsl(213, 19%, 25%);
+        background-color: #262f38;
         cursor: pointer;
-        padding: 1.5em 1.75em;
+        width: 50px;
+        height: 50px;
         text-align: center;
         color: hsl(216, 12%, 54%);
-        margin-right: 1em;
+        display: grid;
+        align-items: center;
     }
     .rating-radio{
         display: none;
     }
 
     .rating-radio:checked + .rating-label{
-        background-color: black;
+        background-color: #7d8798;
+        color: white;
     }
+    .rating-radio:hover + .rating-label{
+        background-color: hsl(25, 97%, 53%);
+        color: white;
+    }
+    
+    .rating-submit{
+      width: 100%;
+      height: 3em;
+      border-radius: 25px;
+      border: none;
+      background-color: hsl(25, 97%, 53%);
+      color: white;
+      font-family: 'Overpass', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      letter-spacing: .1em;
+    }
+
+    .rating-submit:hover{
+      background-color: white;
+      color: hsl(25, 97%, 53%);
+      cursor: pointer;
+    }
+
+    .rating-thanks{
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: .5em .3em;
+    }
+
+    .rating-result {
+      color: hsl(25, 97%, 53%);
+      background-color: #262f38;
+      border-radius: 25px;
+      padding: .25em 1.5em;
+      margin-top: 2em;
+      font-size: 15px;
+    }
+
 
   </style>
 </head>
 <body>
-
+  <div class="container">
     <form class="rating-form">
         <img class="rating-star" src="images/icon-star.svg">
         <h2 class="rating-head rating-margin">
@@ -71,8 +132,8 @@
             Please let us know how we did with your support request. All feedback is appreciated 
             to help us improve our offering!
         </p>
-        <div class="rating-radio-group">
-          <input class="rating-radio" type="radio" id="1" name="rating" value="1">
+        <div class="rating-radio-group rating-margin">
+          <input class="rating-radio" type="radio" id="1" name="rating" value="1" required>
           <label class="rating-label" for="1">1</label>
           <input class="rating-radio" type="radio" id="2" name="rating" value="2">
           <label class="rating-label" for="2">2</label>
@@ -83,28 +144,38 @@
           <input class="rating-radio" type="radio" id="5" name="rating" value="5">
           <label class="rating-label" for="5">5</label>
         </div>
-        <button type="submit">SUBMIT</button>
+        <button class="rating-submit rating-margin" type="submit">SUBMIT</button>
     </form>
-
-  <!-- Rating state start -->
-
- 
-
- 
-
-
-  <!-- Rating state end -->
-
-  <!-- Thank you state start -->
-
-
-
-  <!-- Thank you state end -->
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    <div class="rating-thanks">
+      <img class="rating-thanks-image" src="images/illustration-thank-you.svg">
+      <div class="rating-result rating-margin">You selected</div>
+      <h2 class="rating-head rating-margin">
+          Thank you!
+      </h2>
+      <p class="rating-text rating-margin">
+          We appreciate you taking the time to give a rating. If you ever need more support, 
+          don't hesitate to get in touch!
+      </p>
+    </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.querySelector('.rating-form');
+      var thanks = document.querySelector('.rating-thanks');
+      var ratingResult = document.querySelector('.rating-result');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Get the selected rating value
+        var selectedRating = document.querySelector('input[name="rating"]:checked').value;
+        // Set the rating result text
+        ratingResult.textContent = 'You selected ' + selectedRating + " out of 5";
+        
+        form.style.display = 'none';
+        thanks.style.display = 'flex';
+      });
+    });
+
+  </script>
 </body>
 </html>
