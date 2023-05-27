@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    *{
+        box-sizing: border-box;
+    }
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    body{
+      background: hsl(216, 12%, 8%);
+      display: grid;
+      justify-content: center;
+    }
+    .rating-form{
+      padding: 32px 1em 30px 2.5em;
+      background: hsl(213, 19%, 18%);
+      color: white;
+      max-width: 500px;
+    }
+    .rating-text {
+      color: hsl(216, 12%, 54%);
+    }
+    .rating-star{
+        padding: 24px 24px;
+        border: solid;
+        border-radius: 50%;
+        margin-bottom: 1em;
+    }
+    .rating-margin{
+      margin-bottom: .8em;
+    }
+    .rating-radio-group{
+      margin: 3em 0;
+    }
+    .rating-label{
+        border-radius: 50%;
+        background-color: hsl(213, 19%, 25%);
+        cursor: pointer;
+        padding: 1.5em 1.75em;
+        text-align: center;
+        color: hsl(216, 12%, 54%);
+        margin-right: 1em;
+    }
+    .rating-radio{
+        display: none;
+    }
+
+    .rating-radio:checked + .rating-label{
+        background-color: black;
+    }
+
+  </style>
+</head>
+<body>
+
+    <form class="rating-form">
+        <img class="rating-star" src="images/icon-star.svg">
+        <h2 class="rating-head rating-margin">
+            How did we do?
+        </h2>
+        <p class="rating-text rating-margin">
+            Please let us know how we did with your support request. All feedback is appreciated 
+            to help us improve our offering!
+        </p>
+        <div class="rating-radio-group">
+          <input class="rating-radio" type="radio" id="1" name="rating" value="1">
+          <label class="rating-label" for="1">1</label>
+          <input class="rating-radio" type="radio" id="2" name="rating" value="2">
+          <label class="rating-label" for="2">2</label>
+          <input class="rating-radio" type="radio" id="3" name="rating" value="3">
+          <label class="rating-label" for="3">3</label>
+          <input class="rating-radio" type="radio" id="4" name="rating" value="4">
+          <label class="rating-label" for="4">4</label>
+          <input class="rating-radio" type="radio" id="5" name="rating" value="5">
+          <label class="rating-label" for="5">5</label>
+        </div>
+        <button type="submit">SUBMIT</button>
+    </form>
+
+  <!-- Rating state start -->
+
+ 
+
+ 
+
+
+  <!-- Rating state end -->
+
+  <!-- Thank you state start -->
+
+
+
+  <!-- Thank you state end -->
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+</body>
+</html>
